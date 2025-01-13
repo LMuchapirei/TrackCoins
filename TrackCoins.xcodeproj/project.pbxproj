@@ -34,6 +34,7 @@
 		8731EEE92D350BD100067DC8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731EEE12D350BD100067DC8 /* HomeView.swift */; };
 		8731EEEA2D350BD100067DC8 /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731EEE22D350BD100067DC8 /* CoinRowView.swift */; };
 		8731EEEC2D351C1400067DC8 /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731EEEB2D351C1400067DC8 /* StatisticView.swift */; };
+		8731EEEE2D3559F000067DC8 /* MarketDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731EEED2D3559F000067DC8 /* MarketDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		8731EEE12D350BD100067DC8 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8731EEE22D350BD100067DC8 /* CoinRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
 		8731EEEB2D351C1400067DC8 /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
+		8731EEED2D3559F000067DC8 /* MarketDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			children = (
 				8731EECB2D350B2C00067DC8 /* CoinDataService.swift */,
 				8731EECC2D350B2C00067DC8 /* CoinImageService.swift */,
+				8731EEED2D3559F000067DC8 /* MarketDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				8731EED32D350B7800067DC8 /* NetworkingManager.swift in Sources */,
 				8731EEB62D350AB100067DC8 /* Date.swift in Sources */,
 				8731EECD2D350B2C00067DC8 /* CoinDataService.swift in Sources */,
+				8731EEEE2D3559F000067DC8 /* MarketDataService.swift in Sources */,
 				8731EEBD2D350AC100067DC8 /* Color.swift in Sources */,
 				8731EEBF2D350AC100067DC8 /* String.swift in Sources */,
 				8731EEC92D350AF300067DC8 /* MarketDataModel.swift in Sources */,
