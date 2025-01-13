@@ -21,6 +21,7 @@ class HomeViewModel: ObservableObject {
     func addSubscribers(){        
         $searchText
             .combineLatest(dataService.$allCoins)
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main) // Delay to allow running filtering after a valid word to filter with
             .map(filterCoins)
             .sink {[weak self] (returnedCoins) in
                 self?.allCoins = returnedCoins
