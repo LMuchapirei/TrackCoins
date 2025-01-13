@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SaecrhBarVIew: View {
+struct SearchBarView: View {
     @Binding var searchText : String
     
     var body: some View {
@@ -55,5 +55,5 @@ struct SaecrhBarVIew: View {
 }
 
 #Preview {
-    SaecrhBarVIew(searchText: .constant("Hello"))
+    SearchBarView(searchText: .constant("Hello"))
 }
