@@ -17,13 +17,17 @@ struct HomeView: View {
 
             VStack {
                 homeHeader()
+                homeStatsView()
                 columns()
+                    .padding(.top,5)
                 SearchBarView(searchText: $vm.searchText)
+                    .padding(.top,5)
                 if !showPortfolio {
                    portFolio()
                 } else {
                    allCoins()
                 }
+                
                 Spacer(minLength: 0)
             }
         }
@@ -56,7 +60,7 @@ struct HomeView: View {
         .listStyle(.plain)
         .transition(.move(edge: .leading))
     }
-    
+    // TODO: Create a grid view showing a coin, trading volume, change in percentage aswell on the coin and links to sites to buy that coin
     @ViewBuilder
     func allCoins() -> some View {
         List {
@@ -94,6 +98,18 @@ struct HomeView: View {
               }
         }
         .padding()
+    }
+    
+    @ViewBuilder
+    func homeStatsView()-> some View {
+
+        HStack {
+            ForEach(vm.statistics){ stat in
+                StatisticView(stat: stat)
+                 .frame(width: UIScreen.main.bounds.width / 3)
+            }
+        }
+        .frame(width: UIScreen.main.bounds.width,alignment: showPortfolio ? .trailing : .leading) /// automatically animated from trailing to leading aliignment when our portfolio changes
     }
 }
 

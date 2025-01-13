@@ -33,6 +33,7 @@
 		8731EEE82D350BD100067DC8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731EEDF2D350BD100067DC8 /* HomeViewModel.swift */; };
 		8731EEE92D350BD100067DC8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731EEE12D350BD100067DC8 /* HomeView.swift */; };
 		8731EEEA2D350BD100067DC8 /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731EEE22D350BD100067DC8 /* CoinRowView.swift */; };
+		8731EEEC2D351C1400067DC8 /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731EEEB2D351C1400067DC8 /* StatisticView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		8731EEDF2D350BD100067DC8 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		8731EEE12D350BD100067DC8 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8731EEE22D350BD100067DC8 /* CoinRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
+		8731EEEB2D351C1400067DC8 /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 			children = (
 				8731EED62D350BD100067DC8 /* CircleButton */,
 				8731EED92D350BD100067DC8 /* SearchBarView.swift */,
+				8731EEEB2D351C1400067DC8 /* StatisticView.swift */,
 				8731EEDA2D350BD100067DC8 /* CoinImage */,
 			);
 			path = Components;
@@ -312,6 +315,7 @@
 				8731EEE62D350BD100067DC8 /* CoinViewModel.swift in Sources */,
 				8731EE662D3508FE00067DC8 /* TrackCoinsApp.swift in Sources */,
 				8731EECE2D350B2C00067DC8 /* CoinImageService.swift in Sources */,
+				8731EEEC2D351C1400067DC8 /* StatisticView.swift in Sources */,
 				8731EEC72D350AF300067DC8 /* CoinDetailModel.swift in Sources */,
 				8731EEE92D350BD100067DC8 /* HomeView.swift in Sources */,
 				8731EEE52D350BD100067DC8 /* SearchBarView.swift in Sources */,
