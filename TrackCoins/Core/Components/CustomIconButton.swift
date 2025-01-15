@@ -15,7 +15,7 @@ struct CustomIconButton: View {
     var body: some View {
         Button(
             action: {
-                
+                action()
             }, label: {
             Image(systemName: iconName)
         })
