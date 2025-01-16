@@ -11,6 +11,7 @@ import Combine
 class HomeViewModel: ObservableObject {
     @Published var allCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
+    @Published var isLoading: Bool = false
     @Published var searchText: String = ""
     @Published var statistics: [StatisticModel] = []
     private let coinDataService = CoinDataService()
@@ -44,6 +45,7 @@ class HomeViewModel: ObservableObject {
             .map(generateStatistics)
             .sink { [weak self] (returnedStats) in
                 self?.statistics = returnedStats
+                self?.isLoading = false
             }
             .store(in: &cancellables)
         
@@ -63,6 +65,13 @@ class HomeViewModel: ObservableObject {
     
     func updatePortfolio(coin: CoinModel,amount: Double){
         portfolioDataService.updatePortfolio(coin: coin, amount: amount)
+    }
+    
+    func reloadData() {
+        self.isLoading = true
+        coinDataService.getCoins()
+        marketDataService.getMarketData()
+        NotificationManager.notification(type: .success)
     }
     
     private func generateStatistics(marketDataModel: MarketDataModel?,portfolioCoins:[CoinModel])-> [StatisticModel] {

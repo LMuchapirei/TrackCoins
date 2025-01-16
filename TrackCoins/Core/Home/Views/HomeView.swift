@@ -23,9 +23,9 @@ struct HomeView: View {
                 SearchBarView(searchText: $vm.searchText)
                     .padding(.top,5)
                 if !showPortfolio {
-                   portFolio()
+                  allCoins()
                 } else {
-                   allCoins()
+                   portFolio()
                 }
                 
                 Spacer(minLength: 0)
@@ -34,6 +34,7 @@ struct HomeView: View {
                 PortifolioView()
                     .environmentObject(vm)
             })
+            
         }
        
     }
@@ -48,6 +49,11 @@ struct HomeView: View {
             }
             Text("Price")
                 .frame(width: UIScreen.main.bounds.width / 3.5,alignment: .trailing)
+            Button(action: {
+                vm.reloadData()
+            }, label: {
+                Image(systemName: "goforward")
+            })
         }
         .font(.caption)
         .foregroundStyle(Color.theme.secondaryText)
@@ -55,24 +61,30 @@ struct HomeView: View {
     }
     
     @ViewBuilder
-    func portFolio() -> some View {
+    func allCoins() -> some View {
         List {
             ForEach(vm.allCoins){ coin in
                 CoinRowView(coin:coin, showHoldingsColumn: false)
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
             }
         }
+        .refreshable {
+            vm.reloadData()
+        }
         .listStyle(.plain)
         .transition(.move(edge: .leading))
     }
     // TODO: Create a grid view showing a coin, trading volume, change in percentage aswell on the coin and links to sites to buy that coin
     @ViewBuilder
-    func allCoins() -> some View {
+    func portFolio() -> some View {
         List {
             ForEach(vm.portfolioCoins){ coin in
                 CoinRowView(coin:coin, showHoldingsColumn: true)
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
             }
+        }
+        .refreshable {
+            print("Now refreshing the portfolio data")
         }
         .listStyle(.plain)
         .transition(.move(edge: .trailing))

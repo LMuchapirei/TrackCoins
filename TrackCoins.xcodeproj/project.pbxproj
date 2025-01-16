@@ -12,6 +12,7 @@
 		870358312D36AC070007204E /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870358302D36AC070007204E /* View+Extension.swift */; };
 		870358342D38EDCB0007204E /* PortfolioContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 870358322D38EDCB0007204E /* PortfolioContainer.xcdatamodeld */; };
 		870358362D38EE730007204E /* PortfolioDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870358352D38EE730007204E /* PortfolioDataService.swift */; };
+		870358382D390D170007204E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870358372D390D170007204E /* NotificationManager.swift */; };
 		8731EE662D3508FE00067DC8 /* TrackCoinsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731EE652D3508FE00067DC8 /* TrackCoinsApp.swift */; };
 		8731EE682D3508FE00067DC8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731EE672D3508FE00067DC8 /* ContentView.swift */; };
 		8731EE6D2D3508FF00067DC8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8731EE6C2D3508FF00067DC8 /* Preview Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		870358302D36AC070007204E /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		870358332D38EDCB0007204E /* PortfolioContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PortfolioContainer.xcdatamodel; sourceTree = "<group>"; };
 		870358352D38EE730007204E /* PortfolioDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDataService.swift; sourceTree = "<group>"; };
+		870358372D390D170007204E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		8731EE622D3508FE00067DC8 /* TrackCoins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackCoins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8731EE652D3508FE00067DC8 /* TrackCoinsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCoinsApp.swift; sourceTree = "<group>"; };
 		8731EE672D3508FE00067DC8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			children = (
 				8731EED02D350B7800067DC8 /* LocalFileManager.swift */,
 				8731EED12D350B7800067DC8 /* NetworkingManager.swift */,
+				870358372D390D170007204E /* NotificationManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				8731EEB62D350AB100067DC8 /* Date.swift in Sources */,
 				8731EECD2D350B2C00067DC8 /* CoinDataService.swift in Sources */,
 				8731EEEE2D3559F000067DC8 /* MarketDataService.swift in Sources */,
+				870358382D390D170007204E /* NotificationManager.swift in Sources */,
 				8731EEBD2D350AC100067DC8 /* Color.swift in Sources */,
 				8731EEBF2D350AC100067DC8 /* String.swift in Sources */,
 				8731EEC92D350AF300067DC8 /* MarketDataModel.swift in Sources */,
