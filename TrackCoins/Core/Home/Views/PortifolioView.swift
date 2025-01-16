@@ -33,12 +33,10 @@ struct PortifolioView: View {
                     }
                 }
                 
-                if !quantity.isEmpty {
                     ToolbarItem(placement: .topBarTrailing) {
                        saveHoldings()
                     }
 
-                }
             })
             .onChange(of: vm.searchText) { oldValue, newValue in
                 if newValue == "" {
@@ -54,10 +52,12 @@ struct PortifolioView: View {
             if showCheckMark {
                 Image(systemName: "checkmark")
             }
-            Button (action:{
-                savePressed()
-            }) {
-                Text("SAVE")
+            if !quantity.isEmpty {
+                Button (action:{
+                    savePressed()
+                }) {
+                    Text("SAVE")
+                }
             }
         }
     }
@@ -66,13 +66,14 @@ struct PortifolioView: View {
     func buildCoinSelectionList() -> some View {
         ScrollView(.horizontal,showsIndicators:false) {
             LazyHStack(spacing:10){
-                ForEach(vm.allCoins){ coin in
+                ForEach(vm.searchText.isEmpty ? vm.portfolioCoins : vm.allCoins){ coin in
                     CoinLogoView(coin: coin)
                         .frame(width: 75)
                         .padding(5)
                         .onTapGesture {
                             withAnimation(.easeIn) {
                                 selectedCoin = coin
+                                updateSelectedCoinAmount(coin: coin)
                             }
                         }
                         .conditionalModifier(selectedCoin?.id == coin.id, modifier: { view in
@@ -127,9 +128,11 @@ struct PortifolioView: View {
     }
     
     private func savePressed() {
-        guard let coin = selectedCoin else { return }
+        guard let coin = selectedCoin, let amount = Double(quantity) else { return }
         
         /// save to portfolio
+        vm.updatePortfolio(coin: coin, amount: amount)
+        quantity = ""
         withAnimation(.easeIn){
             showCheckMark = true
             removeSelectedCoin()
@@ -147,6 +150,15 @@ struct PortifolioView: View {
     private func removeSelectedCoin(){
         vm.searchText = ""
         selectedCoin = nil
+    }
+    
+    private func updateSelectedCoinAmount(coin: CoinModel){
+        selectedCoin = coin
+        if let portfolio = vm.portfolioCoins.first(where: { $0.id == coin.id }),let amount = portfolio.currentHoldings {
+            quantity = "\(amount)"
+        } else {
+            quantity = ""
+        }
     }
 }
 
