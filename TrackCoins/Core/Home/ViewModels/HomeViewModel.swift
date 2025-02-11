@@ -14,19 +14,25 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var searchText: String = ""
     @Published var statistics: [StatisticModel] = []
+    @Published var sortOption: SortOption = .holdings
     private let coinDataService = CoinDataService()
     private let marketDataService = MarketDataService()
     private let portfolioDataService = PortfolioDataService()
     private var cancellables = Set<AnyCancellable>()
+    
+    enum SortOption {
+        case rank,rankReversed,holdings,holdingReversed,price,priceReversed
+    }
+    
     init() {
         addSubscribers()
     }
     
     func addSubscribers(){        
         $searchText
-            .combineLatest(coinDataService.$allCoins)
+            .combineLatest(coinDataService.$allCoins,$sortOption)
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main) // Delay to allow running filtering after a valid word to filter with
-            .map(filterCoins)
+            .map(filterAndSortCoins)
             .sink {[weak self] (returnedCoins) in
                 self?.allCoins = returnedCoins
             }
@@ -36,7 +42,8 @@ class HomeViewModel: ObservableObject {
             .combineLatest(portfolioDataService.$savedEntities)
             .map(mapAllCoinsToPortfolioCoins)
             .sink {[weak self] (returnedCoins) in
-                self?.portfolioCoins = returnedCoins
+                guard let self = self else { return }
+                self.portfolioCoins = self.sortPortfolioCoinsOnDemand(coins:returnedCoins)
             }
             .store(in: &cancellables)
         
@@ -102,6 +109,37 @@ class HomeViewModel: ObservableObject {
         return statisticsData
     }
     
+    private func filterAndSortCoins(searchQuery: String, allCoins: [CoinModel],sortOption:SortOption)-> [CoinModel]{
+        var filteredCoins = filterCoins(searchQuery:searchQuery,allCoins:allCoins)
+        sortCoins(sort: sortOption, coins: &filteredCoins) // we are changing the array in place we have to set it using the & in front, indicate an appropriate param to an inout function
+        return filteredCoins
+    }
+    /// inout means sort or deal with the array in place and the sort function does that
+    private func sortCoins(sort: SortOption,coins: inout [CoinModel]) {
+        switch sort {
+        case .rank,.holdings:
+                 coins.sort { $0.rank < $1.rank }
+        case .rankReversed,.holdingReversed:
+                 coins.sort { $0.rank > $1.rank }
+            case .price:
+                 coins.sort { $0.currentPrice < $1.currentPrice }
+            case .priceReversed:
+                 coins.sort { $0.currentPrice > $1.currentPrice }
+           
+        }
+    }
+    
+    private func sortPortfolioCoinsOnDemand(coins:[CoinModel]) -> [CoinModel] {
+        // sort only by holdings or revesed holdings if needed
+        switch sortOption {
+        case .holdings:
+                return  coins.sorted { $0.currentHoldingsValue > $1.currentHoldingsValue }
+        case .holdingReversed:
+                 return coins.sorted { $0.currentHoldingsValue < $1.currentHoldingsValue }
+        default:
+            return coins
+        }
+    }
     
     private func filterCoins(searchQuery: String, allCoins: [CoinModel])-> [CoinModel] {
         guard  !searchQuery.isEmpty else {

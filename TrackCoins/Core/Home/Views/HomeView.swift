@@ -42,13 +42,45 @@ struct HomeView: View {
     @ViewBuilder
     func columns() -> some View {
         HStack {
-            Text("Coin")
+            HStack(spacing: 4){
+                Text("Coin")
+                Image(systemName: "chevron.down")
+                    .opacity(
+                        (vm.sortOption == .rank || vm.sortOption == .rankReversed) ? 1.0 : 0.0
+                    )
+                    .rotationEffect(Angle(degrees: vm.sortOption == .rank ? 0: 180))
+            }
+            .onTapGesture {
+                vm.sortOption = vm.sortOption == .rank ? .rankReversed : .rank
+            }
             Spacer()
             if showPortfolio {
-                Text("Holding")
+                HStack {
+                    Text("Holding")
+                    Image(systemName: "chevron.down")
+                        .opacity(
+                            (vm.sortOption == .holdings || vm.sortOption == .holdingReversed) ? 1.0 : 0.0)
+                        .rotationEffect(Angle(degrees: vm.sortOption == .holdings ? 0: 180))
+                }
+                .onTapGesture {
+                    withAnimation(.default){
+                        vm.sortOption = vm.sortOption == .holdings ? .holdingReversed : .holdings
+                    }
+                }
             }
-            Text("Price")
-                .frame(width: UIScreen.main.bounds.width / 3.5,alignment: .trailing)
+            HStack {
+                Text("Price")
+                    .frame(width: UIScreen.main.bounds.width / 3.5,alignment: .trailing)
+                Image(systemName: "chevron.down")
+                    .opacity(
+                        (vm.sortOption == .price || vm.sortOption == .priceReversed) ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: vm.sortOption == .price ? 0: 180))
+            }
+            .onTapGesture {
+                withAnimation(.default){
+                    vm.sortOption = vm.sortOption == .price ? .priceReversed : .price
+                }
+            }
             Button(action: {
                 vm.reloadData()
             }, label: {
