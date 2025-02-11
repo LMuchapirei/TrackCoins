@@ -43,7 +43,8 @@ class HomeViewModel: ObservableObject {
             .map(mapAllCoinsToPortfolioCoins)
             .sink {[weak self] (returnedCoins) in
                 guard let self = self else { return }
-                self.portfolioCoins = self.sortPortfolioCoinsOnDemand(coins:returnedCoins)
+                self.portfolioCoins = self.sortPortfolioCoinsOnDemand(coins:
+                                                                        returnedCoins)
             }
             .store(in: &cancellables)
         
