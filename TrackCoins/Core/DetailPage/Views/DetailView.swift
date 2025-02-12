@@ -10,21 +10,80 @@ import SwiftUI
 struct DetailView: View {
     @StateObject var vm: CoinDetailViewVM
     let coin: CoinModel
-    
+    private let columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    private let spacing: CGFloat = 30
     init(coin: CoinModel) {
         self.coin = coin
         _vm = StateObject(wrappedValue: CoinDetailViewVM(coin: coin))
         print("Initializing Detail View for \(coin.name)")
     }
     var body: some View {
-        Text("Hello")
+        ScrollView {
+            VStack {
+                Text("")
+                    .frame(height: 150)
+                overview()
+                additionalDetails()
+                
+            }
+            .padding()
+        }
+        .navigationTitle(vm.coin.name)
+    }
+    
+    
+    @ViewBuilder
+    func overview()-> some View {
+        Text("Overview")
+            .font(.title)
+            .bold()
+            .foregroundColor(Color.theme.accent)
+            .frame(maxWidth: .infinity,alignment: .leading)
+        
+        Divider()
+        LazyVGrid(
+            columns:columns,
+            alignment: .leading,
+            pinnedViews: []
+        ) {
+            ForEach(vm.overviewStatistics){ stat in
+                StatisticView(stat: stat)
+                
+            }
+        }
+    }
+    
+    
+    @ViewBuilder
+    func additionalDetails() -> some View {
+        Text("Additional Details")
+            .font(.title)
+            .bold()
+            .foregroundColor(Color.theme.accent)
+            .frame(maxWidth: .infinity,alignment: .leading)
+        Divider()
+        LazyVGrid(
+            columns:columns,
+            alignment: .leading,
+            pinnedViews: []
+        ) {
+            ForEach(vm.additionalStatistics){ stat in
+                StatisticView(stat: stat)
+                
+            }
+        }
     }
 }
 
 #Preview {
-    DetailView(
-        coin: DeveloperPreview.instance.coin
-    )
+    NavigationStack {
+        DetailView(
+            coin: DeveloperPreview.instance.coin
+        )
+    }
 }
 
 
