@@ -50,38 +50,6 @@
             endingLineNumber = "21"
             landmarkName = "handleURLResponse(output:url:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E9A8EC8E-ABF9-4EE6-8B50-2FADCF197F87 - a8d629548a3b4be9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static TrackCoins.NetworkingManager.handleURLResponse(output: (data: Foundation.Data, response: __C.NSURLResponse), url: Foundation.URL) throws -&gt; Foundation.Data"
-                  moduleName = "TrackCoins"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/linvalmuchapirei/learn/iosdev/swiftui/TrackCoins/TrackCoins/Utilities/NetworkingManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "152">
-               </Location>
-               <Location
-                  uuid = "E9A8EC8E-ABF9-4EE6-8B50-2FADCF197F87 - a8d629548a3b4be9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static TrackCoins.NetworkingManager.handleURLResponse(output: (data: Foundation.Data, response: __C.NSURLResponse), url: Foundation.URL) throws -&gt; Foundation.Data"
-                  moduleName = "TrackCoins"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/linvalmuchapirei/learn/iosdev/swiftui/TrackCoins/TrackCoins/Utilities/NetworkingManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "332">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

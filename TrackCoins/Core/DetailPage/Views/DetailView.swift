@@ -18,13 +18,12 @@ struct DetailView: View {
     init(coin: CoinModel) {
         self.coin = coin
         _vm = StateObject(wrappedValue: CoinDetailViewVM(coin: coin))
-        print("Initializing Detail View for \(coin.name)")
     }
     var body: some View {
         ScrollView {
             VStack {
-                Text("")
-                    .frame(height: 150)
+                ChartView(coin: coin)
+                    .padding(.bottom, 20)
                 overview()
                 additionalDetails()
                 
@@ -32,6 +31,22 @@ struct DetailView: View {
             .padding()
         }
         .navigationTitle(vm.coin.name)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+               navigationBarTrailingItems()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func navigationBarTrailingItems() -> some View {
+        HStack {
+            Text(vm.coin.symbol.uppercased())
+                .font(.headline)
+                .foregroundStyle(Color.theme.secondaryText)
+            CoinImageView(coin: vm.coin)
+                .frame(width: 25,height: 25)
+        }
     }
     
     
