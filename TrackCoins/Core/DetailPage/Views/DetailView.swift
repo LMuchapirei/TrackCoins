@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     @StateObject var vm: CoinDetailViewVM
+    @State var showMoreText: Bool = false
     let coin: CoinModel
     private let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -24,9 +25,10 @@ struct DetailView: View {
             VStack {
                 ChartView(coin: coin)
                     .padding(.bottom, 20)
+                descriptionSection()
                 overview()
-                additionalDetails()
-                
+                additionalDetails()   
+                links()
             }
             .padding()
         }
@@ -34,6 +36,49 @@ struct DetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                navigationBarTrailingItems()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func links() -> some View {
+        VStack(spacing:20)
+         {
+            if let websiteString = vm.websiteUrl, let url = URL(string:websiteString){
+                Link("Website",destination: url)
+            }
+            if let reditUrlString = vm.reditUrl, let url = URL(string:reditUrlString){
+                Link("Redit",destination: url)
+            }
+        }
+        .accentColor(.blue)
+        .frame(maxWidth: .infinity,alignment: .leading)
+        .font(.headline)
+    }
+    
+    @ViewBuilder
+    func descriptionSection() -> some View {
+        ZStack {
+            if let coinDescription = vm.coinDescription,!coinDescription.isEmpty {
+                VStack {
+                        Text(coinDescription)
+                        .font(.callout)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .lineLimit(showMoreText ? nil : 3)
+                        Button {
+                            withAnimation(.easeInOut){
+                                showMoreText.toggle()
+                            }
+                        } label: {
+                            Text(showMoreText ? "Show Less...":"Read More...")
+                                .font(.caption)
+                                .accentColor(.blue)
+                                .fontWeight(.bold)
+                                .padding(.vertical,4)
+                        }
+                        .frame(maxWidth:.infinity,alignment: .leading)
+                }
+               
             }
         }
     }

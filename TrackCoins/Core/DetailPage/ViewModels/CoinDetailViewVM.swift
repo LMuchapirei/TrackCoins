@@ -12,6 +12,9 @@ import Combine
 class CoinDetailViewVM: ObservableObject {
     @Published var overviewStatistics: [StatisticModel] = []
     @Published var additionalStatistics: [StatisticModel] = []
+    @Published var coinDescription: String? = nil
+    @Published var websiteUrl: String? = nil
+    @Published var reditUrl: String? = nil
     
     @Published var coin: CoinModel
     private let coinDetailService: CoinDetailDataService
@@ -31,6 +34,15 @@ class CoinDetailViewVM: ObservableObject {
                 self?.overviewStatistics = returnedArrays.overview
             }
             .store(in: &cancellables)
+        
+        coinDetailService.$coinDetail
+            .sink {[weak self] (returnedCoinDetails) in
+                self?.coinDescription = returnedCoinDetails?.description?.en?.removingHTMLOccurances
+                self?.websiteUrl = returnedCoinDetails?.links?.homepage?.first
+                self?.reditUrl = returnedCoinDetails?.links?.subredditURL
+            }
+            .store(in: &cancellables)
+        
     }
     
     private func generateStatistics(coinDetailModel:CoinDetailModel?,coinModel: CoinModel)-> (overview: [StatisticModel],additional:[StatisticModel]) {
